@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>notice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .notice-container {
+            position: fixed;
+            z-index: 10;
+            right: 50px;
+            top: 10px;
+            width: 240px;
+            box-sizing: border-box;
+            padding-bottom: 100px;
+        }
+
+        .notice-container>.notice-box {
+            width: 100%;
+        }
+
+        .notice-container>.notice-box>.notice-inner {
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+            border-radius: 6px;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ebeef5;
+            position: relative;
+            display: flex;
+        }
+
+        .notice-container>.notice-box>.notice-inner.notice-inner-fadein {
+            -webkit-animation: notice-in .3s ease-out both;
+            animation: notice-in .3s ease-out both;
+        }
+
+        @keyframes notice-in {
+            0% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0%);
+            }
+        }
+
+        .notice-container>.notice-box>.notice-inner.notice-inner-fadeout {
+            -webkit-animation: notice-out .6s ease-out both;
+            animation: notice-out .6s ease-out both;
+        }
+
+        @keyframes notice-out {
+            0% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+        }
+
+        .notice-container>.notice-box>.notice-inner .notice-inner-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+        }
+
+        .notice-container>.notice-box>.notice-inner .notice-inner-icon img {
+            display: block;
+            width: auto;
+            height: 20px;
+        }
+
+        .notice-container>.notice-box>.notice-inner .notice-inner-content {
+            flex: 1;
+            margin: 0 4px;
+            max-width: 90%;
+            cursor: pointer;
+        }
+
+        .notice-container>.notice-box>.notice-inner .notice-inner-content:hover .notice-inner-content-title {
+            color: #1296db;
+            transition-duration: .3s;
+        }
+
+        .notice-container>.notice-box>.notice-inner .notice-inner-content .notice-inner-content-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1296db;
+            color: #333;
+            width: 100%;
+            box-sizing: border-box;
+            padding-right: 10px;
+        }
+
+        .notice-container>.notice-box>.notice-inner .notice-inner-content .notice-inner-content-title>div {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+        }
+
+
+        .notice-container>.notice-box>.notice-inner .notice-inner-content .notice-inner-content-dec {
+            margin-top: 5px;
+            font-size: 14px;
+            word-wrap: break-word;
+            word-break: break-all;
+            line-height: 1.4;
+            color: #666;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+
+        .notice-container>.notice-box>.notice-inner .notice-inner-close {
+            width: 20px;
+            height: 20px;
+            /* border:1px solid red; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: -5px;
+            margin-top: -4px;
+            cursor: pointer;
+        }
+
+        .notice-container>.notice-box>.notice-inner .notice-inner-close img {
+            display: block;
+            width: 30px;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="create-notice">生成消息</div>
+</body>
+<script src="./js/notice.js"></script>
+<script>
+    var index = 0;
+    function addClickEvent(btn, cb) {
+        btn.addEventListener("click", function () {
+            cb && cb();
+        });
+    }
+
+    addClickEvent(document.querySelector('.create-notice'), function () {
+        index++;
+        Notice.show({
+            title: index + 'hello world哈哈哈哈速度发货速度放缓是的合法化123123123123123123123123123123!',
+            dec: 'w10000000000',
+            duration: index % 2 == 0 ? 2000 : 3000,
+            complete: function () {
+                alert('http://www.baidu.com');
+            },
+            close: function () {
+                // alert('点击关闭');
+            }
+        });
+    })
+
+    for (var i = 0; i < 2; i++) {
+        !function (j) {
+            setTimeout(function () {
+                Notice.show({
+                    title: j + 'hello world!',
+                    dec: j + 'xxxsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfxxxxxxxxxx123132',
+                    duration: 2000,
+                    complete: function () {
+                        alert('点击成功' + j);
+                    }
+                });
+            }, j*100);
+        }(i);
+    }
+
+</script>
+
+</html>
