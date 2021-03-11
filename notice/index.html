@@ -63,7 +63,7 @@
         @keyframes notice-out {
             0% {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateX(0%);
             }
 
             100% {
@@ -183,7 +183,7 @@
                 Notice.show({
                     title: j + 'hello world!',
                     dec: j + 'xxxsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfxxxxxxxxxx123132',
-                    duration: 2000,
+                    duration: 0,
                     complete: function () {
                         alert('点击成功' + j);
                     }

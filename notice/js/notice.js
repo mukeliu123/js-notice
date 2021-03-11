@@ -1,4 +1,3 @@
-//兼容迭代器
 function _typeof(obj) {
     "@babel/helpers - typeof";
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
@@ -56,10 +55,12 @@ function _typeof(obj) {
         return el;
     }
 
+    //移除dom节点
     function removeChild(el) {
         el && el.parentNode.removeChild(el);
     }
 
+    //添加css样式
     function css(el, css) {
         for (var key in css) {
             el.style[key] = css[key];
@@ -70,7 +71,8 @@ function _typeof(obj) {
         }
     }
 
-    function addClass(el, s) {
+    //添加class
+    function addClass(el, s) {   
         var c = el.className || "";
 
         if (!hasClass(c, s)) {
@@ -80,10 +82,12 @@ function _typeof(obj) {
         }
     }
 
+    //判断是否有class
     function hasClass(c, s) {
         return c.indexOf(s) > -1 ? !0 : !1;
     }
 
+    //移除class
     function removeClass(el, s) {
         var c = el.className || "";
 
@@ -127,7 +131,6 @@ function _typeof(obj) {
 
     //创建消息
     function createNoticeEl(args) {
-        console.log(args);
         var type = args.type,
             duration = args.duration,
             title = args.title,
@@ -149,10 +152,6 @@ function _typeof(obj) {
                 cDom(
                     { className: 'notice-inner notice-inner-fadein' },
                     [
-                        // cDom(
-                        //     { className: 'notice-inner-icon' },
-                        //     '<img src="./images/notice.png" />'
-                        // ),
                         cDom(
                             { className: 'notice-inner-content' },
                             [
@@ -184,8 +183,8 @@ function _typeof(obj) {
         if (!noticeBox.children.length) {
             document.body.appendChild(noticeBox);
         }
-
-        noticeBox.appendChild(el);
+        // noticeBox.appendChild(el);
+        noticeBox.insertBefore(el, noticeBox.firstChild);
         if(duration>0){
             setTimeout(function(){
                 closeNotice(el, onClose);
@@ -196,9 +195,6 @@ function _typeof(obj) {
     //关闭消息
     function closeNotice(el, cb) {
         if (!el) return;
-        // css(el, {
-        //     height: 0
-        // });
         addClass(el.children[0], "notice-inner-fadeout");
         cb && cb();
         setTimeout(function () {
@@ -214,7 +210,7 @@ function _typeof(obj) {
             if (!noticeBox.children.length) {
                 has && removeChild(noticeBox);
             }
-        }, 200);
+        }, 700);
     }
 
     //暴露消息体
